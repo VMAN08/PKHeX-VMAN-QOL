@@ -53,7 +53,7 @@ Once multiple Pokémon are selected, drag them together with modifier keys:
 | **Alt+Shift+Drag** | Clone AND overwrite (best of both worlds) |
 
 ### Improved Slot Interaction
-- **Click** or **Double-click** any slot to view the Pokémon in the editor
+- **Click** any slot to view the Pokémon in the editor
 - Drag threshold uses proper Windows system settings (no more accidental drags)
 - Visual distinction between selection (blue border) and keyboard focus (dotted border)
 
