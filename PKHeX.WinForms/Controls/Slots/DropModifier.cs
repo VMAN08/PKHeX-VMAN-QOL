@@ -17,4 +17,8 @@ public enum DropModifier
     /// Clone the source slot.
     /// </summary>
     Clone,
+    /// <summary>
+    /// Clone the source slot and overwrite the target slot.
+    /// </summary>
+    CloneAndOverwrite,
 }

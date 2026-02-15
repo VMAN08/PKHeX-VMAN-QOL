@@ -1,6 +1,19 @@
 PKHeX - By Kaphotics
 http://projectpokemon.org/pkhex/
 
+26/02/14 - Custom Fork Update:
+ - Added: Multi-Pokémon Selection and Drag-Drop
+ - - Control-Click on box slots to toggle multi-selection (blue border indicator).
+ - - Drag multiple selected Pokémon at once to move them sequentially.
+ - - Shift-Drag to clone all selected Pokémon.
+ - - Alt-Drag to overwrite occupied destination slots.
+ - - Alt-Shift-Drag to clone and overwrite occupied slots.
+ - Changed: Click (or Double-click) on a slot to view it in the editor tabs.
+ - Changed: Control-Click now toggles multi-selection instead of viewing.
+ - Added: New DropModifier.CloneAndOverwrite enum value for Alt+Shift operations.
+ - Added: SlotSelectionManager class to manage multi-selection state.
+ - Changed: SelectablePictureBox now displays blue border for selection, dotted border for keyboard focus.
+
 26/01/31 - New Update:
  - Legality: Swampertite now released, can exist in inventory/held.
  - Added: Gen9a handling for 9,999 Mega Shards.

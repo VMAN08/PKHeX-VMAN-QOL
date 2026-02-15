@@ -29,6 +29,7 @@ public static class SlotUtil
     /// </summary>
     public static DropModifier GetDropModifier() => Control.ModifierKeys switch
     {
+        Keys.Shift | Keys.Alt => DropModifier.CloneAndOverwrite,
         Keys.Shift => DropModifier.Clone,
         Keys.Alt => DropModifier.Overwrite,
         _ => DropModifier.None,

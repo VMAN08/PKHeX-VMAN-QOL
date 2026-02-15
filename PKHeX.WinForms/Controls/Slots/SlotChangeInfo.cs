@@ -32,6 +32,11 @@ public sealed class SlotChangeInfo<TCursor, TImageSource>
     public string? CurrentPath { get; set; }
 
     /// <summary>
+    /// Gets or sets the number of items being dragged in a multi-drag operation.
+    /// </summary>
+    public int DragCount { get; set; } = 1;
+
+    /// <summary>
     /// Slot that is being dragged from.
     /// </summary>
     public SlotViewInfo<TImageSource>? Source { get; set; }
@@ -49,6 +54,7 @@ public sealed class SlotChangeInfo<TCursor, TImageSource>
         IsLeftMouseDown = IsDragDropInProgress = false;
         CurrentPath = null;
         Cursor = null;
+        DragCount = 1;
     }
 
     private bool IsSourceParty => Source?.Slot is SlotInfoParty;
