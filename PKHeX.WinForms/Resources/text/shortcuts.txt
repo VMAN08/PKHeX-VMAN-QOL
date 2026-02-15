@@ -84,7 +84,6 @@ Control-Click a slot to toggle multi-selection (blue border). Selected slots can
 Shift-Click a slot to set tabs to slot.
 Alt-Click a slot to delete the data in slot.
 Click a slot to view it in the editor tabs.
-Doubleclick a slot to also view it in the editor tabs.
 
 Multi-Drag Selected Slots:
 - Drag selected slots to move all to destination sequentially.
