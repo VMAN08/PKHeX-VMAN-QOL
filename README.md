@@ -1,10 +1,12 @@
-PKHeX
+PKHeX - VMAN QOL Fork
 =====
 <div>
   <span>English</span> / <a href=".github/README-es.md">Español</a> / <a href=".github/README-fr.md">Français</a> / <a href=".github/README-de.md">Deutsch</a> / <a href=".github/README-it.md">Italiano</a> / <a href=".github/README-ko.md">한국어</a> / <a href=".github/README-zh-Hant.md">繁體中文</a> / <a href=".github/README-zh-Hans.md">简体中文</a>
 </div>
 
 ![License](https://img.shields.io/badge/License-GPLv3-blue.svg)
+
+> **🎯 Custom Fork Notice:** This is a quality-of-life enhanced fork of the original [PKHeX by Kaphotics](https://github.com/kwsch/PKHeX) with additional multi-Pokémon selection and drag-drop features. See [Custom Features](#custom-features) below for details.
 
 Pokémon core series save editor, programmed in [C#](https://en.wikipedia.org/wiki/C_Sharp_%28programming_language%29).
 
@@ -29,6 +31,42 @@ PKHeX expects save files that are not encrypted with console-specific keys. Use 
 ## Screenshots
 
 ![Main Window](https://i.imgur.com/pIHdoTp.png)
+
+## Custom Features
+
+This fork adds enhanced multi-Pokémon selection and drag-drop functionality to improve workflow efficiency when organizing boxes:
+
+### Multi-Selection System
+- **Ctrl+Click** on any box slot to toggle multi-selection
+- Selected Pokémon display a **blue border** for clear visual feedback
+- Can only select Pokémon from the same box (prevents cross-box confusion)
+- Selection automatically clears when switching boxes or after completing a drag operation
+
+### Multi-Drag Operations
+Once multiple Pokémon are selected, drag them together with modifier keys:
+
+| Action | Description |
+|--------|-------------|
+| **Drag** | Move all selected Pokémon to destination sequentially |
+| **Shift+Drag** | Clone all selected Pokémon (sources remain intact) |
+| **Alt+Drag** | Overwrite occupied destination slots |
+| **Alt+Shift+Drag** | Clone AND overwrite (best of both worlds) |
+
+### Improved Slot Interaction
+- **Click** or **Double-click** any slot to view the Pokémon in the editor
+- Drag threshold uses proper Windows system settings (no more accidental drags)
+- Visual distinction between selection (blue border) and keyboard focus (dotted border)
+
+### Technical Implementation
+- **New Class:** `SlotSelectionManager` - Centralized multi-selection state management
+- **New Enum Value:** `DropModifier.CloneAndOverwrite` - Supports Alt+Shift modifier combination
+- **Enhanced Components:** `SelectablePictureBox`, `SlotChangeManager`, `BoxEditor`, `DragManager`
+- **Updated Documentation:** Shortcuts and changelog reflect all new features
+
+### Why This Fork?
+The original PKHeX only supports dragging one Pokémon at a time. This fork addresses the tedious workflow of reorganizing many Pokémon by allowing batch operations while maintaining full compatibility with the original PKHeX save file format.
+
+---
 
 ## Building
 
