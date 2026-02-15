@@ -5,6 +5,7 @@ PKHeX - VMAN QOL Fork
 </div>
 
 ![License](https://img.shields.io/badge/License-GPLv3-blue.svg)
+![Release](https://img.shields.io/github/v/release/VMAN08/PKHeX-VMAN-QOL?label=Latest%20Release)
 
 > **🎯 Custom Fork Notice:** This is a quality-of-life enhanced fork of the original [PKHeX by Kaphotics](https://github.com/kwsch/PKHeX) with additional multi-Pokémon selection and drag-drop features. See [Custom Features](#custom-features) below for details.
 
