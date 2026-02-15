@@ -66,5 +66,22 @@ public sealed class DragManager
     /// <summary>
     /// Gets a value indicating whether a drag operation can be started.
     /// </summary>
-    public bool CanStartDrag => Info.IsLeftMouseDown && !Cursor.Position.Equals(MouseDownPosition);
+    public bool CanStartDrag
+    {
+        get
+        {
+            if (!Info.IsLeftMouseDown)
+                return false;
+
+            // Use system drag threshold to prevent accidental drags from tiny movements
+            var dragSize = SystemInformation.DragSize;
+            var dragRect = new Rectangle(
+                MouseDownPosition.X - dragSize.Width / 2,
+                MouseDownPosition.Y - dragSize.Height / 2,
+                dragSize.Width,
+                dragSize.Height);
+
+            return !dragRect.Contains(Cursor.Position);
+        }
+    }
 }

@@ -10,9 +10,18 @@ namespace PKHeX.WinForms.Controls;
 /// <remarks>Draws a focus rectangle, and can be tabbed between, raising events for screen readers.</remarks>
 public class SelectablePictureBox : PictureBox
 {
-    public SelectablePictureBox() => SetStyle(ControlStyles.Selectable, TabStop = true);
+    public SelectablePictureBox()
+    {
+        SetStyle(ControlStyles.Selectable | ControlStyles.StandardClick | ControlStyles.StandardDoubleClick, true);
+        TabStop = true;
+    }
 
     public static int FocusBorderDeflate { get; set; }
+
+    /// <summary>
+    /// Gets or sets whether this slot is currently selected for multi-drag operations.
+    /// </summary>
+    public bool IsSelected { get; set; }
 
     protected override void OnMouseDown(MouseEventArgs e)
     {
@@ -34,10 +43,20 @@ public class SelectablePictureBox : PictureBox
     protected override void OnPaint(PaintEventArgs pe)
     {
         base.OnPaint(pe);
-        if (!Focused)
-            return;
+
         var rc = ClientRectangle;
         rc.Inflate(-FocusBorderDeflate, -FocusBorderDeflate);
-        ControlPaint.DrawFocusRectangle(pe.Graphics, rc);
+
+        // Blue border for selection (persistent)
+        if (IsSelected)
+        {
+            using var pen = new System.Drawing.Pen(System.Drawing.Color.DodgerBlue, 3);
+            pe.Graphics.DrawRectangle(pen, rc);
+        }
+        // Dotted border for keyboard focus (transient)
+        else if (Focused)
+        {
+            ControlPaint.DrawFocusRectangle(pe.Graphics, rc);
+        }
     }
 }

@@ -197,6 +197,7 @@ public partial class BoxEditor : UserControl, ISlotViewer<PictureBox>
         M = m;
         M.Boxes.Add(this);
         FlagIllegal = M.SE.FlagIllegal;
+        M.Selection.SelectionChanged += OnSelectionChanged;
     }
 
     /// <summary>
@@ -248,6 +249,7 @@ public partial class BoxEditor : UserControl, ISlotViewer<PictureBox>
 
     public void ResetSlots()
     {
+        M?.Selection.Clear();
         Editor.Reload();
         int box = CurrentBox;
         BoxPokeGrid.SetBackground(SAV.WallpaperImage(box));
@@ -307,12 +309,35 @@ public partial class BoxEditor : UserControl, ISlotViewer<PictureBox>
         B_BoxRight.Click -= ClickBoxRight;
         B_BoxLeft.Click -= ClickBoxLeft;
         CB_BoxSelect.SelectedIndexChanged -= GetBox;
+        if (M is not null)
+            M.Selection.SelectionChanged -= OnSelectionChanged;
     }
 
     public void Reset()
     {
         ResetBoxNames();
         ResetSlots();
+    }
+
+    private void OnSelectionChanged(object? sender, EventArgs e)
+    {
+        if (M is null) return;
+
+        for (int i = 0; i < SlotPictureBoxes.Count; i++)
+        {
+            var pb = SlotPictureBoxes[i];
+            if (pb is not SelectablePictureBox spb)
+                continue;
+
+            var slotInfo = new SlotViewInfo<PictureBox>(GetSlotData(pb), this);
+            bool isSelected = M.Selection.Contains(slotInfo);
+
+            if (spb.IsSelected != isSelected)
+            {
+                spb.IsSelected = isSelected;
+                spb.Invalidate(); // Trigger repaint
+            }
+        }
     }
 
     private void GetBox(object? sender, EventArgs e)
